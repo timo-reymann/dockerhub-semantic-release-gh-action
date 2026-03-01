@@ -75,4 +75,5 @@ runs:
         context: .
         platforms: ${{ inputs.platforms }}
         push: true
+        sbom: true
         tags: ${{ inputs.image }}:latest, ${{ inputs.image }}:${{ steps.semantic-release.outputs.new_release_version }}
