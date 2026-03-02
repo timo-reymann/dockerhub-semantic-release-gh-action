@@ -61,7 +61,7 @@ runs:
         password: ${{ inputs.dockerhub_token }}
     - name: Docker Hub Description
       if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      uses: peter-evans/dockerhub-description@v4.0.0
+      uses: peter-evans/dockerhub-description@v4.0.2
       with:
         username: ${{ inputs.dockerhub_username }}
         password: ${{ inputs.dockerhub_token }}
