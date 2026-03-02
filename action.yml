@@ -59,15 +59,6 @@ runs:
       with:
         username: ${{ inputs.dockerhub_username }}
         password: ${{ inputs.dockerhub_token }}
-    - name: Docker Hub Description
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      uses: peter-evans/dockerhub-description@v5.0.0
-      with:
-        username: ${{ inputs.dockerhub_username }}
-        password: ${{ inputs.dockerhub_token }}
-        repository: ${{ inputs.image }}
-        short-description: ${{ github.event.repository.description }}
-        enable-url-completion: true
     - name: Build and push image
       if: steps.semantic-release.outputs.new_release_published == 'true'
       uses: docker/build-push-action@v6
@@ -77,3 +68,12 @@ runs:
         push: true
         sbom: true
         tags: ${{ inputs.image }}:latest, ${{ inputs.image }}:${{ steps.semantic-release.outputs.new_release_version }}
+    - name: Docker Hub Description
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: peter-evans/dockerhub-description@v5.0.0
+      with:
+        username: ${{ inputs.dockerhub_username }}
+        password: ${{ inputs.dockerhub_token }}
+        repository: ${{ inputs.image }}
+        short-description: ${{ github.event.repository.description }}
+        enable-url-completion: true
