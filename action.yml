@@ -34,7 +34,7 @@ runs:
       uses: actions/checkout@v7
     - name: Run semantic-release
       id: semantic-release
-      uses: cycjimmy/semantic-release-action@v6
+      uses: cycjimmy/semantic-release-action@v7.1.2
       with:
         semantic_version: 25.0.9
         extra_plugins: |
