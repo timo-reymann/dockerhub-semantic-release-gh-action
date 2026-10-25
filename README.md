@@ -30,11 +30,30 @@ jobs:
   main:
     steps:
       - runs-on: ubuntu-latest
-        uses: timo-reymann/docker-semantic-release-gh-action@v2
+        uses: timo-reymann/dockerhub-semantic-release-gh-action@v6
         with:
           image: user/imagename
           dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Published tags
+
+For a release `3.2.1` on `main` the action pushes these tags:
+
+- `3`
+- `3.2`
+- `3.2.1`
+- `latest`
+- `edge`
+
+The version tag keeps the full version text. A prerelease such as `3.2.1-beta.1` publishes `3`, `3.2`, `3.2.1-beta.1`, `latest` and `edge`.
+
+| Run | Pushed tags |
+| --- | --- |
+| Release on `main` or `master` | `3`, `3.2`, `3.2.1`, `latest`, `edge` |
+| Release on another branch | `3`, `3.2`, `3.2.1`, `latest` |
+| No release on `main` or `master` | `edge` |
+| No release on another branch | none (local `snapshot` build check only) |
 
